@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>uncompression model</title>
+  <style>
+    body { margin: 0; text-align: center; }
+    canvas { width: 800px; height: 800px; margin: 50px auto; outline: none; }
+  </style>
+
+  <script src="https://cdn.polyfill.io/v2/polyfill.min.js"></script>
+  <script src="https://preview.babylonjs.com/babylon.js"></script>
+  <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+</head>
+<body>
+  <canvas id="canvas" touch-action="none"></canvas>
+
+  <script>
+    var canvas = document.getElementById('canvas')
+    var engine = new BABYLON.Engine(canvas, true)
+    var scene = new BABYLON.Scene(engine)
+
+    var dracoPath = 'https://preview.babylonjs.com/'
+    BABYLON.DracoCompression.Configuration.decoder = {
+      wasmUrl: dracoPath + '/draco_wasm_wrapper_gltf.js',
+      wasmBinaryUrl: dracoPath + '/draco_decoder_gltf.wasm',
+      fallbackUrl: dracoPath + '/draco_decoder_gltf.js'
+    }
+
+    BABYLON.SceneLoader.ImportMesh('', './', 'box.min.glb', scene, function() {
+      scene.createDefaultCamera(true, true, true)
+      scene.createDefaultLight()
+      engine.runRenderLoop(function() {
+        scene.render()
+      })
+
+      window.addEventListener('resize', function() {
+        engine.resize()
+      });
+    });
+
+  </script>
+</body>
+</html>

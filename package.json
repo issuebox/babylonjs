@@ -1,0 +1,25 @@
+{
+  "name": "babylonjsissue",
+  "version": "0.0.0",
+  "description": "babylonjs issues",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/issuebox/babylonjs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/issuebox/babylonjs/issues"
+  },
+  "homepage": "https://github.com/issuebox/babylonjs#readme",
+  "devDependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "@hapi/inert": "^6.0.1"
+  }
+}
