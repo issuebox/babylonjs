@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Uncompressed model</title>
+  <style>
+    body { margin: 0; text-align: center; }
+    canvas { width: 800px; height: 800px; margin: 50px auto; outline: none; }
+  </style>
+
+  <script src="https://preview.babylonjs.com/babylon.js"></script>
+  <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+  <script>
+    var dracoPath = 'https://preview.babylonjs.com/'
+    BABYLON.DracoCompression.Configuration.decoder = {
+      wasmUrl: dracoPath + '/draco_wasm_wrapper_gltf.js',
+      wasmBinaryUrl: dracoPath + '/draco_decoder_gltf.wasm',
+      fallbackUrl: dracoPath + '/draco_decoder_gltf.js'
+    }
+  </script>
+</head>
+<body>
+  <canvas id="canvas" touch-action="none"></canvas>
+
+  <script>
+    var canvas = document.getElementById('canvas');
+    var engine = new BABYLON.Engine(canvas, true);
+    var scene = new BABYLON.Scene(engine);
+
+    BABYLON.SceneLoader.ImportMesh('', './', 'animate-sphere.glb', scene, function(meshes) {
+      console.log(meshes)
+
+      var mesh = meshes[0]
+      mesh.isVisible = false
+
+      var mesh1 = mesh.createInstance('mesh1')
+      mesh1.position.y = 2
+      var mesh2 = mesh.createInstance('mesh2')
+      mesh2.position.y = -2
+      scene.createDefaultCamera(true, true, true);
+      scene.createDefaultLight();
+      engine.runRenderLoop(function() {
+        scene.render();
+      });
+
+      window.addEventListener('resize', function() {
+        engine.resize();
+      });
+    });
+
+  </script>
+</body>
+</html>
