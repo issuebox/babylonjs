@@ -28,7 +28,7 @@
     var engine = new BABYLON.Engine(canvas, true);
     var scene = new BABYLON.Scene(engine);
 
-    BABYLON.SceneLoader.ImportMesh('', './', 'animate-sphere.glb', scene, function(meshes) {
+    BABYLON.SceneLoader.ImportMesh('', './', 'sphere.glb', scene, function(meshes) {
       console.log(meshes)
 
       var mesh = meshes[0]
