@@ -6,6 +6,14 @@ scene.clearColor = false
 async function init() {
 
 
+  const camera = new BABYLON.UniversalCamera(
+    'DEFAULT CAMERA',
+    new BABYLON.Vector3(0, 10, -1000),
+    scene
+  )
+  camera.speed = 100
+  camera.attachControl(canvas)
+
   const hdrTexture = await new Promise(resolve => {
     const hdr = new BABYLON.HDRCubeTexture(
       './product.hdr',
@@ -23,6 +31,8 @@ async function init() {
   })
   scene.environmentTexture = hdrTexture
 
+  
+
   const { meshes: products } = await BABYLON.SceneLoader.ImportMeshAsync(
     '',
     // './',
@@ -33,8 +43,8 @@ async function init() {
     scene
   )
   window.products = products
+  
 
-  scene.createDefaultCamera(true, true, true)
   engine.runRenderLoop(function() {
     scene.render()
   })
