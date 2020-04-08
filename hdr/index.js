@@ -30,13 +30,14 @@ async function init() {
   })
   scene.environmentTexture = hdrTexture
 
-  
+
 
   await BABYLON.SceneLoader.ImportMeshAsync(
     '',
     // './',
     // 'wns.glb',
-    'https://www.babylonjs-playground.com/scenes/',
+    // 'https://www.babylonjs-playground.com/scenes/',
+    'https://playground.babylonjs.com/scenes/',
     'BoomBox.glb',
     // 'seagulf.glb',
     scene
