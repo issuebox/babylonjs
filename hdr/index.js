@@ -36,8 +36,8 @@ async function init() {
     '',
     // 'https://playground.babylonjs.com/scenes/',
     // 'BoomBox.glb',
-    './',
-    'wns.glb',
+    'https://hall.cn.gcimg.net/models/zozen/szl/',
+    'szl.glb',
     scene
   )
   scene.createDefaultCamera(true, true, true)
