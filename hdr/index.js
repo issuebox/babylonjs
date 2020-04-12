@@ -5,32 +5,24 @@ var scene = new BABYLON.Scene(engine)
 scene.clearColor = false
 async function init() {
 
-  // const camera = new BABYLON.UniversalCamera(
-  //   'DEFAULT CAMERA',
-  //   new BABYLON.Vector3(0, 10, -1000),
-  //   scene
-  // )
-  // camera.speed = 100
-  // camera.attachControl(canvas)
-
-  // const hdrTexture = await new Promise(resolve => {
-  //   const hdr = new BABYLON.HDRCubeTexture(
-  //     'https://playground.babylonjs.com/textures/parking.hdr',
-  //     scene,
-  //     512,
-  //     null,
-  //     null,
-  //     true,
-  //     null,
-  //     function() {
-  //       resolve(hdr)
-  //     }
-  //   )
-  // })
-  // scene.environmentTexture = hdrTexture
+  const hdrTexture = await new Promise(resolve => {
+    const hdr = new BABYLON.HDRCubeTexture(
+      './parking.hdr',
+      scene,
+      512,
+      null,
+      null,
+      true,
+      null,
+      function() {
+        resolve(hdr)
+      }
+    )
+  })
+  scene.environmentTexture = hdrTexture
 
 
-  scene.environmentTexture = new BABYLON.CubeTexture("https://playground.babylonjs.com/textures/parking.env", scene);
+  // scene.environmentTexture = new BABYLON.CubeTexture("https://playground.babylonjs.com/textures/parking.env", scene);
 
   await BABYLON.SceneLoader.ImportMeshAsync(
     '',
@@ -42,7 +34,6 @@ async function init() {
   )
   scene.createDefaultCamera(true, true, true)
   
-
 
   engine.runRenderLoop(function() {
     scene.render()
